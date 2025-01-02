@@ -9,8 +9,10 @@ COPY . /src
 
 # App
 RUN cd /src
-RUN npm install
+RUN pnpm install
 RUN echo "SESSION_SECRET=abc123" > .env
-RUN npm run build
+RUN pnpm build
 
-CMD npm start
+CMD pnpm start
+
+# git@github.com:palyon-cc/jsonhero.git
