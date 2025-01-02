@@ -1,16 +1,12 @@
 # Builder
-FROM node:latest
-WORKDIR /app
-
-RUN npm config set registry https://registry.npmmirror.com
-RUN npm install -g pnpm
-
-COPY . /app
+FROM node:16.17.0 as builder
+WORKDIR /src
+COPY . /src
 
 # App
-RUN cd /app
-RUN pnpm install
+RUN cd /src
+RUN npm install
 RUN echo "SESSION_SECRET=abc123" > .env
-RUN pnpm build
+RUN npm run build
 
-CMD pnpm start
+CMD npm start
